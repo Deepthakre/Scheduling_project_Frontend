@@ -12,19 +12,17 @@ const OAuthSuccessPage = () => {
 
   useEffect(() => {
     const accessToken = searchParams.get("accessToken");
-    const refreshToken = searchParams.get("refreshToken");
 
-    if (!accessToken || !refreshToken) {
+    if (!accessToken) {
       toast.error("Google login failed. Please try again.");
       navigate("/login");
       return;
     }
 
-    // Save tokens
+    // Access token save karo
     localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
 
-    // Fetch user profile
+    // Profile fetch karo
     api
       .get<AuthResponse>("/auth/profile", {
         headers: { Authorization: `Bearer ${accessToken}` },

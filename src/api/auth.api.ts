@@ -19,8 +19,8 @@ export const authApi = {
 
   login: async (email: string, password: string) => {
     const res = await api.post<AuthResponse>("/auth/login", { email, password });
+    // Sirf accessToken aur user save karo — refreshToken cookie mein aa gaya
     if (res.data.accessToken) localStorage.setItem("accessToken", res.data.accessToken);
-    if (res.data.refreshToken) localStorage.setItem("refreshToken", res.data.refreshToken);
     if (res.data.user) localStorage.setItem("user", JSON.stringify(res.data.user));
     return res.data;
   },
@@ -52,4 +52,3 @@ export const authApi = {
     window.location.href = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/auth/google`;
   },
 };
- 
