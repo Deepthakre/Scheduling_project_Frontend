@@ -1,0 +1,470 @@
+/* ===== Create Meeting CSS ===== */
+
+.create-meeting-page {
+  min-height: 100vh;
+  background: #f7f8fc;
+}
+
+.create-meeting-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  color: #4a5568;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.18s;
+}
+
+.back-btn:hover {
+  background: #f7f8fc;
+  color: #1a202c;
+}
+
+.step-label {
+  font-size: 0.85rem;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+/* ── Step Progress ── */
+.create-meeting-content {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  margin-bottom: 36px;
+}
+
+.step-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 2px solid #e2e8f0;
+  background: #ffffff;
+  color: #a0aec0;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.step-circle.active {
+  border-color: #4f46e5;
+  background: #4f46e5;
+  color: white;
+}
+
+.step-circle.done {
+  border-color: #00c896;
+  background: #00c896;
+  color: white;
+}
+
+.step-line {
+  flex: 1;
+  height: 2px;
+  background: #e2e8f0;
+  transition: background 0.2s;
+}
+
+.step-line.done {
+  background: #00c896;
+}
+
+/* ── Step Card ── */
+.step-card {
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  padding: 32px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  animation: fadeUp 0.22s ease;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.step-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.step-card-subtitle {
+  font-size: 0.875rem;
+  color: #a0aec0;
+  margin-bottom: 24px;
+}
+
+/* ── Meeting Type Grid ── */
+.type-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.type-card {
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 22px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.18s;
+  background: #ffffff;
+}
+
+.type-card:hover {
+  border-color: #4f46e5;
+  background: #f5f3ff;
+}
+
+.type-card.selected {
+  border-color: #4f46e5;
+  background: #f5f3ff;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.type-card-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.type-card-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.type-card-desc {
+  font-size: 0.78rem;
+  color: #a0aec0;
+  margin-top: 4px;
+}
+
+/* ── Form Fields ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  padding: 10px 13px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  color: #1a202c;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.18s;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.08);
+}
+
+/* ── Duration Chips ── */
+.duration-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.duration-chip {
+  padding: 7px 16px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  background: white;
+  color: #4a5568;
+}
+
+.duration-chip:hover,
+.duration-chip.active {
+  border-color: #4f46e5;
+  background: #f5f3ff;
+  color: #4f46e5;
+}
+
+/* ── Availability Rows ── */
+.availability-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.availability-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr auto;
+  gap: 8px;
+  align-items: center;
+  background: #f9fafc;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.availability-row select,
+.availability-row input[type="time"] {
+  padding: 7px 10px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background: white;
+  color: #1a202c;
+  outline: none;
+  font-family: inherit;
+}
+
+.availability-row select:focus,
+.availability-row input[type="time"]:focus {
+  border-color: #4f46e5;
+}
+
+.remove-row-btn {
+  background: none;
+  border: none;
+  color: #a0aec0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all 0.18s;
+  line-height: 1;
+}
+
+.remove-row-btn:hover {
+  color: #e53e3e;
+  background: #fff5f5;
+}
+
+.add-row-btn {
+  width: 100%;
+  padding: 8px;
+  background: none;
+  border: 1.5px dashed #4f46e5;
+  border-radius: 7px;
+  color: #4f46e5;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.add-row-btn:hover {
+  background: #f5f3ff;
+}
+
+/* ── Custom Questions ── */
+.questions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.question-item {
+  background: #f9fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+
+.question-item-top {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.question-item-top input {
+  flex: 1;
+  padding: 8px 11px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  background: white;
+  color: #1a202c;
+  outline: none;
+  font-family: inherit;
+}
+
+.question-item-top input:focus {
+  border-color: #4f46e5;
+}
+
+.question-required {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #4a5568;
+  cursor: pointer;
+}
+
+.add-question-btn {
+  width: 100%;
+  padding: 8px;
+  background: none;
+  border: 1.5px dashed #00c896;
+  border-radius: 7px;
+  color: #00a37a;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.add-question-btn:hover {
+  background: #e6fff8;
+}
+
+/* ── Review Section ── */
+.review-block {
+  margin-bottom: 20px;
+}
+
+.review-block-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #a0aec0;
+  margin-bottom: 10px;
+}
+
+.review-row {
+  display: flex;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.875rem;
+}
+
+.review-row:last-child {
+  border-bottom: none;
+}
+
+.review-row-label {
+  width: 120px;
+  flex-shrink: 0;
+  color: #a0aec0;
+  font-weight: 600;
+}
+
+.review-row-value {
+  color: #1a202c;
+}
+
+.avail-tag {
+  display: inline-flex;
+  align-items: center;
+  background: #f5f3ff;
+  color: #4f46e5;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin: 2px;
+}
+
+/* ── Step Nav Buttons ── */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  gap: 12px;
+}
+
+.step-prev-btn {
+  background: none;
+  border: 1.5px solid #e2e8f0;
+  color: #4a5568;
+  padding: 10px 22px;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.step-prev-btn:hover {
+  border-color: #4a5568;
+}
+
+.step-next-btn {
+  background: #4f46e5;
+  border: none;
+  color: white;
+  padding: 10px 28px;
+  border-radius: 7px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s;
+  min-width: 130px;
+}
+
+.step-next-btn:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
+
+.step-next-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #e53e3e;
+  font-size: 0.82rem;
+  margin-top: 10px;
+}

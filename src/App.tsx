@@ -1,14 +1,23 @@
+// frontend/src/App.tsx
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+// Auth pages (tera existing)
 import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import VerifyEmailPage from "./pages/VerifyEmailPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import OAuthSuccessPage from "./pages/OAuthSuccessPage";
+
+// Scheduling pages (naye)
 import DashboardPage from "./pages/DashboardPage";
+import CreateMeetingPage from "./pages/CreateMeetingPage";
+import PublicBookingPage from "./pages/PublicBookingPage";
+import BookingSuccessPage from "./pages/BookingSuccessPage";
 
 const App = () => {
   return (
@@ -16,7 +25,7 @@ const App = () => {
       <BrowserRouter>
         <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         <Routes>
-          {/* Public Routes */}
+          {/* ── Public Auth Routes ── */}
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/verify-email" element={<VerifyEmailPage />} />
@@ -24,7 +33,11 @@ const App = () => {
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/oauth-success" element={<OAuthSuccessPage />} />
 
-          {/* Protected Routes */}
+          {/* ── Public Booking Routes ── */}
+          <Route path="/book/:slug" element={<PublicBookingPage />} />
+          <Route path="/booking-success" element={<BookingSuccessPage />} />
+
+          {/* ── Protected Routes ── */}
           <Route
             path="/dashboard"
             element={
@@ -33,8 +46,16 @@ const App = () => {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/create-meeting"
+            element={
+              <ProtectedRoute>
+                <CreateMeetingPage />
+              </ProtectedRoute>
+            }
+          />
 
-          {/* Redirect root to dashboard or login */}
+          {/* ── Redirects ── */}
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
